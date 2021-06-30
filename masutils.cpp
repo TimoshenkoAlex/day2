@@ -162,7 +162,16 @@ int testDeleteFromMas() {
 // �������� ������� ������ ������ �� n-��������� � ����������� ������� ��������� ������
 
 int testrShiftMas() {
-  return -1;
+	// arrange 
+	int source[5] = {-10, 2, -7, 4, 5};		
+	int result[5] = {0, 0, 0, 0, 0};
+	int shiftCount = 15;
+	
+	//act
+	rShiftMas(source, shiftCount, 5);
+	
+	//assert
+	return compareMas(source, result, 5);
 }
 
 
@@ -218,5 +227,7 @@ int main() {
 
    runTest(testCompareMas,"testCompareMas");
    runTest(testSkoFromMas,"testSkoFromMas");
+
+   runTest(testrShiftMas, "testrShiftMas");
 }
 
