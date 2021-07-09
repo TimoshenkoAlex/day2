@@ -1,4 +1,5 @@
 #include <iostream>
+using namespace std;
 
 struct Node {
   int val;
@@ -8,17 +9,30 @@ struct Node {
 // Инициализации элемента односвязного списка нулями
 
 void init(Node* node) {
-
+    node->val = 0;
+    node->next = NULL;
 }
 
 // Отображения односвязного списка на экран
 void show(Node* head) {
-
+	Node* cur = root;
+	while (cur->next != NULL)
+	{
+		cout << cur->val << " ";
+		cur = cur->next;
+	}
+	cout << endl;
 }
 
 // Добавления элемента в односвязный список
 void pushNode(Node* head,Node* node) {
+	Node* cur = root;
+	while (cur->next != NULL)
+		cur = cur->next;
 
+	cur->next = new Node;
+	init(cur->next);
+	cur->val = node->val;
 } 
 
 
@@ -47,7 +61,33 @@ void deleteList(Node* head,int n) {
 
 // Написать функцию сдвига значений вправо на n-элементов с заполнением крайних элементов нулями
 void rShiftList(Node* head,int n) {
+	for (int i = 0; i < n; i++)
+	{
+		Node* p = root;
+		int num = p->val;
+		int x[2];
 
+		x[0] = p->next->val;
+		p->next->val = p->val;
+		p->val = 0;
+
+		int j = 0;
+
+		while (p->next->next != NULL)
+		{
+			if (j % 2 == 0) {
+				p = p->next;
+				x[1] = p->next->val;
+				p->next->val = x[0];
+			}
+			else {
+				p = p->next;
+				x[0] = p->next->val;
+				p->next->val = x[1];
+			}
+			j++;
+		}
+	}
 }
 
 
