@@ -121,6 +121,23 @@ int testSkoFromList() {
   return -1;
 }
 
+bool testrShiftList()
+{
+	Node* root = new Node;
+
+	init(root);
+	pushNode(root, new Node{ 1 });
+	pushNode(root, new Node{ 2 });
+	pushNode(root, new Node{ 3 });
+	pushNode(root, new Node{ 4 });
+	pushNode(root, new Node{ 5 });
+
+	//show(root);
+	rShiftList(root, 3);
+	//show(root);
+	return (root->val == 0 && root->next->val == 0 && root->next->next->val == 0 && root->next->next->next->val == 1 && root->next->next->next->next->val == 2);
+}
+
 
 static void runTest(int (*testFunction)(),const std::string& testName)
 {
@@ -133,7 +150,7 @@ static void runTest(int (*testFunction)(),const std::string& testName)
 
 
 int main() {
-  runTest(testSkoFromList,"testSkoFromList");
+  runTest(testrShiftList,"testrShiftlist");
 
 
 }
